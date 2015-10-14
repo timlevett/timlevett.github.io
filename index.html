@@ -22,7 +22,7 @@
         <md-fab-actions class="md-toolbar-tools">
           <md-button ng-repeat="navItem in nav" aria-label="{{navItem.name}}"  class="md-fab md-raised md-mini md-primary" ui-sref="{{navItem.url}}" >
             <md-tooltip md-direction="top">{{navItem.name}}</md-tooltip>
-            <md-icon><i class='fa {{navItem.faIcon}}'></i></md-icon>
+            <i class='fa {{navItem.faIcon}} fa-2x nav-icons'></i>
           </md-button>
         </md-fab-actions>
     </md-fab-speed-dial>

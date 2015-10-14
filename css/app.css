@@ -1,5 +1,9 @@
 .navigation {
   position: fixed;
-bottom: 0;
-right: 0;
+  bottom: 10px;
+  right: 10px;
+}
+
+.nav-icons {
+  padding-top : 5px;
 }
