@@ -1,0 +1,16 @@
+[
+  { "name" : "Home",
+    "url" : "home",
+    "faIcon" : "fa-home"
+  },
+  { "name" : "About Me",
+    "url" : "https://plus.google.com/+TimLevett",
+    "target" : "_blank",
+    "faIcon" : "fa-question"
+  },
+  { "name" : "Github Profile",
+    "url" : "https://github.com/timlevett",
+    "target" : "_blank",
+    "faIcon" : "fa-github"
+  }
+]

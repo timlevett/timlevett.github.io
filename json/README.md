@@ -1,0 +1,1 @@
+Place to put all your static json feeds
