@@ -10,6 +10,20 @@
   </head>
   <body ng-app='timHome'>
     
+    <md-toolbar md-scroll-shrink>
+      <div class="md-toolbar-tools"><i class='fa fa-home'></i>&nbsp;The Tim Blog</div>
+    </md-toolbar>
+    
+    <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+      <md-whiteframe class="md-whiteframe-5dp" flex="90">
+        <h1 class="md-secondary" style='text-align: center;'>Blog Post 1</h1>
+        <p style='padding: 15px;'>
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+        </p>
+      </md-whiteframe>
+    </div>
+    
+    <!--navigation-->
     <div class="navigation" ng-controller="NavController as navCtrl">
     <md-fab-speed-dial md-direction='left' class="md-fling">
       <md-fab-trigger>
@@ -20,10 +34,14 @@
       </md-fab-trigger>
       
         <md-fab-actions class="md-toolbar-tools">
-          <md-button ng-repeat="navItem in nav" aria-label="{{navItem.name}}"  class="md-fab md-raised md-mini md-primary" ui-sref="{{navItem.url}}" >
-            <md-tooltip md-direction="top">{{navItem.name}}</md-tooltip>
-            <i class='fa {{navItem.faIcon}} fa-2x nav-icons'></i>
-          </md-button>
+          <div ng-repeat="navItem in nav">
+            <a ng-href='{{navItem.url}}' target='{{navItem.target}}'>
+              <md-button aria-label="{{navItem.name}}"  class="md-fab md-raised md-mini md-primary">
+                <md-tooltip md-direction="top">{{navItem.name}}</md-tooltip>
+                <i class='fa {{navItem.faIcon}} fa-2x nav-icons'></i>
+              </md-button>
+            </a>
+          </div>
         </md-fab-actions>
     </md-fab-speed-dial>
     </div>

@@ -6,7 +6,7 @@
   "author": "Tim Levett <tim.levett@gmail.com>",
   "dependencies": {
     "angular": "~1.4.4",
-    "angular-material": "~0.10.0",
+    "angular-material": "~0.11.0",
     "angular-ui-router": "^0.2.15"
   }
 }

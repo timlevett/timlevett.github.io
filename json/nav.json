@@ -1,6 +1,6 @@
 [
   { "name" : "Home",
-    "url" : "home",
+    "url" : "/",
     "faIcon" : "fa-home"
   },
   { "name" : "About Me",

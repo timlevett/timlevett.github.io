@@ -20,4 +20,6 @@
         $scope.nav = result.data;
       }, function(){console.warn('issue getting nav')});
   });
+  
+  timHome.value('date',new Date());
 })();
