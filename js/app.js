@@ -1,6 +1,6 @@
 (function(){
 
-  var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router']);
+  var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar']);
 
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     $mdThemingProvider.theme('default')
