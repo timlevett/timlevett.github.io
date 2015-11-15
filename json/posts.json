@@ -1,0 +1,20 @@
+[
+  {
+    "id" : 1,
+    "title" : "First Post",
+    "date" : "01-13-1990",
+    "body" : "This is just a really long sentence to get something to look at."
+  },
+  {
+    "id" : 2,
+    "title" : "Second Post",
+    "date" : "01-13-2015",
+    "body" : "This is just a really long sentence to get something to look at."
+  },
+  {
+    "id" : 3,
+    "title" : "Java Encapsulation Needs an Easy Button",
+    "date" : "11-15-2015",
+    "body" : "We have all done it, some might not even remember why.  You wrote a private variable with public/protected getters and setters.  We do this for encapsulation, so if by some chance you wanted to change what happens when you set or get that value, you can change it with no effect to the code that utilizes your super fancy class.  However, 99.9% of the time, we are just returning or setting the value.  In a dream the other night I had [what I hope to be] a premonition that Java 9 had added @getter and @Setter annotations.  The next day I did a Google search for said software, curious how they dealt with the whole \"the function exists, but it doesn't exist in a file\" thing.  I found Project Lombok.  Neat project, full of useful annotations.  The trick they do is changing your IDE to be okay with no real getter/setter. Neat! I think Java needs to take this project in house and have it be part of the compiler (just like Java is doing with Joda Time, yay!).  In the end it is just space saver for your .java file as the .class would presumably have these methods. However, think of the countless dev hours that you will save with not having to read/write/generate your getters/setters. I mean, look how much cleaner this code is:  <a href='http://projectlombok.org/features/GetterSetter.html'>http://projectlombok.org/features/GetterSetter.html</a>."
+  }
+]

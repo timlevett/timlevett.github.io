@@ -13,3 +13,11 @@ md-whiteframe {
   background: #fff;
   margin: 30px;
   height: auto; }
+
+blog-post .date {
+      float: right;
+      padding-right: 5px;
+      padding-top: 5px;
+      color: gray;
+      font-size: .8em;
+}

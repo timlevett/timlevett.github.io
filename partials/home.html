@@ -1,0 +1,5 @@
+<div class='home' ng-controller="HomeController">
+  <div ng-repeat="post in posts | orderBy:'-id'">
+    <blog-post title='{{post.title}}' body='{{post.body}}' date='{{post.date}}'></blog-post>
+  </div>
+</div>
