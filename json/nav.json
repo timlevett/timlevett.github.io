@@ -12,5 +12,9 @@
     "url" : "https://github.com/timlevett",
     "target" : "_blank",
     "faIcon" : "fa-github"
+  },
+  { "name" : "Home Beta",
+    "url" : "#beta",
+    "faIcon" : "fa-home"
   }
 ]

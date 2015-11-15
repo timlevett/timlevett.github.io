@@ -10,7 +10,8 @@
 
     $urlRouterProvider.otherwise("/");
     $stateProvider
-      .state('home', { url: '/', templateUrl : "partials/home.html"});
+      .state('home', { url: '/', templateUrl : "partials/home.html"})
+      .state('homebeta', { url: '/beta', templateUrl : "partials/home2.html"});
   });
 
   timHome.controller('NavController',function ($scope, $http) {
@@ -27,6 +28,18 @@
       .then(function(result){
         $scope.posts = result.data;
       }, function(){console.warn('issue getting posts')});
+  });
+
+  timHome.directive('blogPostBeta', function(){
+    return {
+      restrict : 'E',
+      scope : {
+        title : '@',
+        body : '@',
+        date : '@'
+      },
+      templateUrl : 'partials/bp2.html'
+    }
   });
 
   timHome.directive('blogPost', function(){

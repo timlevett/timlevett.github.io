@@ -1,0 +1,7 @@
+<div class='home' ng-controller="HomeController">
+  <md-content style="height: 600px;">
+    <div ng-repeat="post in posts | orderBy:'-id'">
+      <blog-post-beta title='{{post.title}}' body='{{post.body}}' date='{{post.date}}'></blog-post-beta>
+    </div>
+  </md-content>
+</div>
