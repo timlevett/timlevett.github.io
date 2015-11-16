@@ -10,17 +10,12 @@ img.crest {
   position: fixed;
   bottom: 10px;
   right: 10px;
+  z-index: 21;
 }
 
 .nav-icons {
   padding-top : 5px;
 }
-
-
-blog-post md-whiteframe {
-  background: #fff;
-  margin: 30px;
-  height: auto; }
 
 .date {
       float: right;
