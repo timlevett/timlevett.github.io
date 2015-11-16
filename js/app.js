@@ -11,8 +11,18 @@
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html"})
+      .state('home-detail', { url: '/:postid', templateUrl : "partials/home.html"})
       .state('homebeta', { url: '/beta', templateUrl : "partials/home2.html"});
   });
+
+  timHome.run(
+  [          '$rootScope', '$state', '$stateParams',
+    function ($rootScope,   $state,   $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+    }
+  ]
+)
 
   timHome.controller('NavController',function ($scope, $http) {
     $scope.nav = [];
@@ -24,6 +34,7 @@
 
   timHome.controller('HomeController',function ($sce, $scope, $http) {
     $scope.posts = [];
+    $scope.postid = $scope.$stateParams.postid;
     $http.get('/json/posts.json', { cache : true})
       .then(function(result){
         $scope.posts = result.data;
