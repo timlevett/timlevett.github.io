@@ -14,7 +14,7 @@
     "faIcon" : "fa-github"
   },
   { "name" : "Home Beta",
-    "url" : "#beta",
+    "url" : "#beta/home",
     "faIcon" : "fa-home"
   }
 ]

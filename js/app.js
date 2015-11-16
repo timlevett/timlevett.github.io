@@ -12,14 +12,13 @@
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html"})
       .state('home-detail', { url: '/:postid', templateUrl : "partials/home.html"})
-      .state('homebeta', { url: '/beta', templateUrl : "partials/home2.html"});
+      .state('homebeta', { url: '/beta/home', templateUrl : "partials/home2.html"});
   });
 
-  timHome.run(
-  [          '$rootScope', '$state', '$stateParams',
+  timHome.run(['$rootScope', '$state', '$stateParams',
     function ($rootScope,   $state,   $stateParams) {
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
     }
   ]
 )
