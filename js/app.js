@@ -30,6 +30,14 @@
       }, function(){console.warn('issue getting posts')});
   });
 
+  timHome.controller('BetaHomeController', function ($scope, $http) {
+    $scope.posts = [];
+    $http.get('/json/posts.json', { cache : true})
+      .then(function(result){
+        $scope.posts = result.data;
+      }, function(){console.warn('issue getting posts')});
+  });
+
   timHome.directive('blogPostBeta', function(){
     return {
       restrict : 'E',

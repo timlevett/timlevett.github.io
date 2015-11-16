@@ -1,3 +1,7 @@
+.center {
+  text-align: center;
+}
+
 .navigation {
   position: fixed;
   bottom: 10px;
