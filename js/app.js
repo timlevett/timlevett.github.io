@@ -2,29 +2,44 @@
 
   var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar']);
 
+//configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
       .accentPalette('blue');
-
+    
+    $mdThemingProvider.theme('altTheme')
+      .primaryPalette('orange')
+      .accentPalette('red');
+      
+    $mdThemingProvider.alwaysWatchTheme(true);
+    
 
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html"})
-      .state('home-detail', { url: '/:postid', templateUrl : "partials/home.html"})
+      .state('home-detail', { url: '/post/:postid', templateUrl : "partials/home.html"})
       .state('homebeta', { url: '/beta/home', templateUrl : "partials/home2.html"});
   });
 
   timHome.run(['$rootScope', '$state', '$stateParams',
     function ($rootScope,   $state,   $stateParams) {
+        $rootScope.theme = 'default';
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
     }
   ]
-)
+);
 
-  timHome.controller('NavController',function ($scope, $http) {
+//controllers -----------------------------------------------------------------------
+
+    timHome.controller('NavController',function ($scope, $http, $rootScope) {
     $scope.nav = [];
+    
+    $scope.switchTheme = function() {
+      $rootScope.theme = $rootScope.theme === 'default' ? 'altTheme' : 'default';
+    };
+    
     $http.get('/json/nav.json', { cache : true})
       .then(function(result){
         $scope.nav = result.data;
@@ -40,13 +55,7 @@
       }, function(){console.warn('issue getting posts')});
   });
 
-  timHome.controller('BetaHomeController', function ($scope, $http) {
-    $scope.posts = [];
-    $http.get('/json/posts.json', { cache : true})
-      .then(function(result){
-        $scope.posts = result.data;
-      }, function(){console.warn('issue getting posts')});
-  });
+//directives -----------------------------------------------------------------------
 
   timHome.directive('blogPostBeta', function(){
     return {
@@ -71,6 +80,12 @@
       templateUrl : 'partials/blogpost.html'
     }
   });
-
-  timHome.value('date',new Date());
+  
+  timHome.directive('nav', function(){
+    return {
+      restrict : 'E',
+      templateUrl : 'partials/nav.html'
+    };
+  });
+  
 })();

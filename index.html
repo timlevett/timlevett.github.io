@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css" type="text/css" />
   </head>
-  <body ng-app='timHome'>
+  <body ng-app='timHome' md-theme="{{ theme }}">
 
     <md-toolbar md-scroll-shrink>
       <div class="md-toolbar-tools"><img class='crest' src='favicon.ico'></img>&nbsp;The Tim Blog</div>
@@ -17,29 +17,7 @@
     <div ui-view></div>
 
     <!--navigation-->
-    <div class="navigation" ng-controller="NavController as navCtrl">
-    <md-fab-speed-dial md-direction='left' class="md-fling">
-      <md-fab-trigger>
-        <md-button aria-label="menu" class="md-fab">
-          <md-icon>
-            <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="100" class='gravatar'>
-          </md-icon>
-          <md-tooltip md-direction="top">Menu</md-tooltip>
-        </md-button>
-      </md-fab-trigger>
-
-        <md-fab-actions class="md-toolbar-tools">
-          <div ng-repeat="navItem in nav">
-            <a ng-href='{{navItem.url}}' target='{{navItem.target}}'>
-              <md-button aria-label="{{navItem.name}}"  class="md-fab md-raised md-mini md-primary">
-                <md-tooltip md-direction="top">{{navItem.name}}</md-tooltip>
-                <i class='fa {{navItem.faIcon}} fa-2x nav-icons'></i>
-              </md-button>
-            </a>
-          </div>
-        </md-fab-actions>
-    </md-fab-speed-dial>
-    </div>
+    <nav></nav>
     <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-gravatar/build/angular-gravatar.min.js"></script>
