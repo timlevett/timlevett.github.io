@@ -18,7 +18,7 @@
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html"})
-      .state('home-detail', { url: '/post/:postid', templateUrl : "partials/home.html"})
+      .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html"})
       .state('homebeta', { url: '/beta/home', templateUrl : "partials/home2.html"});
   });
 
@@ -46,12 +46,15 @@
       }, function(){console.warn('issue getting nav')});
   });
 
-  timHome.controller('HomeController',function ($sce, $scope, $http) {
+  timHome.controller('HomeController',function ($sce, $scope, $http, filterFilter) {
     $scope.posts = [];
     $scope.postid = $scope.$stateParams.postid;
     $http.get('/json/posts.json', { cache : true})
       .then(function(result){
         $scope.posts = result.data;
+        if($scope.postid) {
+          $scope.post = filterFilter($scope.posts, $scope.postid)[0];
+        }
       }, function(){console.warn('issue getting posts')});
   });
 
