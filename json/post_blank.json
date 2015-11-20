@@ -5,3 +5,9 @@
   "body" : "",
   "tags" : []
 }
+
+,
+{ "name" : "Home Beta",
+  "url" : "#/beta/home",
+  "faIcon" : "fa-home"
+}
