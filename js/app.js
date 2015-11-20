@@ -3,7 +3,10 @@
   var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar','angulartics', 'angulartics.google.analytics']);
 
 //configuration -----------------------------------------------------------------------
-  timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
+  timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
+    $analyticsProvider.firstPageview(true);
+    $analyticsProvider.withAutoBase(true);
+
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
       .accentPalette('blue');
