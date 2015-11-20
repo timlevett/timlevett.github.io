@@ -5,7 +5,6 @@
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
     $analyticsProvider.firstPageview(true);
-    $analyticsProvider.withAutoBase(true);
 
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
