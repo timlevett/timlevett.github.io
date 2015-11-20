@@ -37,3 +37,7 @@ img.crest {
   color: black;
   text-decoration: none;
 }
+
+.md-subheader-inner {
+  font-size: large;
+}

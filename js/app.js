@@ -7,19 +7,19 @@
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
       .accentPalette('blue');
-    
+
     $mdThemingProvider.theme('altTheme')
       .primaryPalette('orange')
       .accentPalette('red');
-      
+
     $mdThemingProvider.alwaysWatchTheme(true);
-    
+
 
     $urlRouterProvider.otherwise("/");
     $stateProvider
-      .state('home', { url: '/', templateUrl : "partials/home.html"})
+      .state('home', { url: '/', templateUrl : "partials/home2.html"})
       .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html"})
-      .state('homebeta', { url: '/beta/home', templateUrl : "partials/home2.html"});
+      .state('homebeta', { url: '/beta/home', templateUrl : "partials/home.html"});
   });
 
   timHome.run(['$rootScope', '$state', '$stateParams',
@@ -35,11 +35,11 @@
 
     timHome.controller('NavController',function ($scope, $http, $rootScope) {
     $scope.nav = [];
-    
+
     $scope.switchTheme = function() {
       $rootScope.theme = $rootScope.theme === 'default' ? 'altTheme' : 'default';
     };
-    
+
     $http.get('/json/nav.json', { cache : true})
       .then(function(result){
         $scope.nav = result.data;
@@ -83,12 +83,12 @@
       templateUrl : 'partials/blogpost.html'
     }
   });
-  
+
   timHome.directive('nav', function(){
     return {
       restrict : 'E',
       templateUrl : 'partials/nav.html'
     };
   });
-  
+
 })();
