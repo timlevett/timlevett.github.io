@@ -6,9 +6,11 @@
   "author": "Tim Levett <tim.levett@gmail.com>",
   "dependencies": {
     "angular": "~1.4.4",
+    "angular-gravatar": "~0.3.1",
     "angular-material": "~0.11.0",
-    "angular-ui-router": "^0.2.15",
     "angular-sanitize": "~1.5.0",
-    "angular-gravatar": "~0.3.1"
+    "angular-ui-router": "^0.2.15",
+    "angulartics": "^0.20.2",
+    "angulartics-google-analytics": "^0.1.2"
   }
 }

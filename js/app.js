@@ -1,6 +1,6 @@
 (function(){
 
-  var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar']);
+  var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar','angulartics', 'angulartics.google.analytics']);
 
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
