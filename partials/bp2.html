@@ -2,7 +2,10 @@
   <md-subheader class="md-primary"><a href='#/post/{{title}}' class='title'>{{title}}</a> <div class='date'>{{date | date}}</div></md-subheader>
   <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
   <md-whiteframe class="md-whiteframe-1dp" flex="96" flex-offset='2'>
-    <p  layout-padding ng-bind-html='body' >
+    <p ng-if='body' layout-padding ng-bind-html='body' >
+    </p>
+    <p layout-padding ng-if='md' >
+      <md ng-include="'/md/' + id + '.md'"></md>
     </p>
   </md-whiteframe>
 </div>
