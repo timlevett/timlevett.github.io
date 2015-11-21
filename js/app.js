@@ -1,6 +1,12 @@
 (function(){
 
-  var timHome = angular.module('timHome', ['ngMaterial','ngSanitize','ui.router','ui.gravatar','angulartics', 'angulartics.google.analytics']);
+  var timHome = angular.module('timHome', ['ngMaterial',
+                                           'ngSanitize',
+                                           'ui.router',
+                                           'ui.gravatar',
+                                           'angulartics',
+                                           'angulartics.google.analytics',
+                                           'yaru22.md']);
 
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
@@ -68,7 +74,9 @@
       scope : {
         title : '@',
         body : '@',
-        date : '@'
+        date : '@',
+        md : '@',
+        id : '@'
       },
       templateUrl : 'partials/bp2.html'
     }
@@ -80,7 +88,9 @@
       scope : {
         title : '@',
         body : '@',
-        date : '@'
+        date : '@',
+        md : '@',
+        id : '@'
       },
       templateUrl : 'partials/blogpost.html'
     }

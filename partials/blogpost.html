@@ -2,7 +2,10 @@
   <md-whiteframe class="md-whiteframe-2dp" flex="90" flex-offset='5'>
     <div class='date'>{{date | date}}</div>
     <h1 class="md-secondary" style='text-align: center;' ><a href='#/post/{{title}}' class='title'>{{title}}</a></h1>
-    <p style='padding: 15px;' ng-bind-html='body'>
+    <p ng-if='body' style='padding: 15px;' ng-bind-html='body'>
+    </p>
+    <p layout-padding ng-if='md' >
+      <md ng-include="'/md/' + id + '.md'"></md>
     </p>
   </md-whiteframe>
 </div>
