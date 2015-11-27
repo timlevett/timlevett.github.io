@@ -33,5 +33,12 @@
     "date" : "11-21-2015",
     "md"   : true,
     "tags" : ["snow", "fat biking","workout"]
-  }
+  },
+  {
+  "id" : 6,
+  "title" : "Happy Thanksgiving!",
+  "date"  : "11-26-2015",
+  "md"    : true,
+  "tags"  : ["thanks","traveling"]
+}
 ]
