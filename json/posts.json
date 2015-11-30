@@ -1,7 +1,7 @@
 [
   {
     "id" : 1,
-    "title" : "First Post",
+    "title" : "Hello World",
     "date" : "01-13-1990",
     "body" : "Remember that one time I wrote in a blog? You may have remembered it, it was called <a href='https://nocableneeded.blogspot.com' target='_blank'>no cable needed</a>. It was great for a while, then I thought it would be wonderful if I wrote many blogs. I created: <a href='http://lifewithtimtim.blogspot.com/' target='_blank'>http://lifewithtimtim.blogspot.com/</a> which was just my life events, <a href='http://codemonkeydba.blogspot.com/' target='_blank'>http://codemonkeydba.blogspot.com/</a> which was work stuff that I found amusing, and <a href='http://thiscityhasbigbuildingsilikefoodbye.blogspot.com/' target='_blank'>I love food</a> which I have written in a totally of 3 times. Wowza, that was crazy. Well, as of today, those are now depricated. I'll be putting posts on all of those soon. Welcome to the new Tim blog. I thought it would be fun to write an open source blogger using github's super neat public hosting site. So, here goes nothing...",
     "tags" : ["first", "blogs"]
@@ -24,7 +24,7 @@
     "id" : 4,
     "title" : "Things Real Blogs Have",
     "date" : "11-19-2015",
-    "body" : "I added some features as of late to my blog. I revamped the home page to have a better subtitle feel. I tested on mobile too so fixed some issues there. I also added detail pages. Now if you click the header on any post it'll bring you to a page with just that post. The post URL is really a search on the JSON in the backend. It does a filter, then grabs the first entry in the returned array. Think of it as \"close enough\" browsing. My next goal is to setup a markdown template. In theory I should be able to just have a directory with .md files and my blog will display the content. After that, I'll probably be done for a while. Holidays and all that. Excited, tomorrow is supposed to be the first snow fall. Can't wait to get the fat bike out. If I don't post, happy holidays!",
+    "md" : true,
     "tags" : ["blogs", "winter"]
   },
   {
