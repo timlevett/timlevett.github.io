@@ -7,6 +7,13 @@
     <p layout-padding ng-if='md' >
       <md ng-include="'/md/' + id + '.md'"></md>
     </p>
+    <md-content class='tags'>
+      <md-chips ng-model="tags" readonly="true">
+        <md-chip-template>
+          <a class='chip-link' ng-href='#/tag/{{$chip}}'>{{$chip}}</a>
+        </md-chip-template>
+      </md-chips>
+    </md-content>
   </md-whiteframe>
 </div>
 </section>
