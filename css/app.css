@@ -6,6 +6,12 @@ img.crest {
   font-size : large;
 }
 
+.bottom-left-abs {
+  position : absolute;
+  bottom : 0;
+  right : 0;
+}
+
 .center {
   text-align: center;
 }
@@ -37,6 +43,18 @@ img.crest {
   left: 3px;
 }
 
+.gravatar-sidebar {
+  border-radius: 1000px;
+  width: 50px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.header-sidebar {
+  padding-left : 10px;
+}
+
 .title {
   color: black;
   text-decoration: none;
@@ -63,3 +81,4 @@ marked .middle img {
   }
 
 }
+

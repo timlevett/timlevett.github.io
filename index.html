@@ -12,12 +12,18 @@
     
     <div ng-controller="SidebarController">
       <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <md-toolbar>
+          <h3 class='header-sidebar'>The Tim Blog</h3>
+          <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="50" class='gravatar-sidebar'>
+        </md-toolbar>
         <md-list>
-          <md-list-item>
-            <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="100" class='gravatar-sidebar'>
+          <md-list-item ng-repeat="item in nav" style='width:100%;'>
+           <a ng-href='{{item.url}}' target='{{item.target}}'><md-button class='md-primary md-raised'><span style='width: 100%;'><i class='fa {{item.faIcon}} fa-fw'></i>{{item.name}}</span><md-button></a>
           </md-list-item>
-          <md-list-item ng-repeat="item in nav">
-           <h3><a ng-href='{{item.url}}' target='{{item.target}}'><i class='fa {{item.faIcon}} fa-fw'></i>{{item.name}}</a></h3>
+          <md-list-item class='bottom-left-abs'>
+            <md-button ng-click="openLeftMenu()" class='md-raised md-accent'>
+              Close Sidebar
+            </md-button>
           </md-list-item>
         </md-list>
       </md-sidenav>
