@@ -14,8 +14,7 @@
 
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
-      .accentPalette('blue')
-      .backgroundPalette('grey');
+      .accentPalette('blue');
 
     $mdThemingProvider.theme('altTheme')
       .primaryPalette('orange')

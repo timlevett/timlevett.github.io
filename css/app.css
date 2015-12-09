@@ -16,6 +16,10 @@ img.crest {
   text-align: center;
 }
 
+.full-width {
+  width : 100%;
+}
+
 .navigation {
   position: fixed;
   bottom: 10px;
@@ -53,6 +57,10 @@ img.crest {
 
 .header-sidebar {
   padding-left : 10px;
+}
+
+.item-sidebar {
+  width : 95%;
 }
 
 .title {
