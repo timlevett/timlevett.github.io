@@ -9,10 +9,27 @@
     <link rel="stylesheet" href="/css/app.css" type="text/css" />
   </head>
   <body ng-app='timHome' md-theme="{{ theme }}">
-
-    <md-toolbar md-scroll-shrink>
-      <div class="md-toolbar-tools"><a href='#/'><img class='crest' src='favicon.ico'></img></a>&nbsp;The Tim Blog</div>
-    </md-toolbar>
+    
+    <div ng-controller="SidebarController">
+      <md-sidenav md-component-id="left" class="md-sidenav-left">
+        <md-list>
+          <md-list-item>
+            <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="100" class='gravatar-sidebar'>
+          </md-list-item>
+          <md-list-item ng-repeat="item in nav">
+           <h3><a ng-href='{{item.url}}' target='{{item.target}}'><i class='fa {{item.faIcon}} fa-fw'></i>{{item.name}}</a></h3>
+          </md-list-item>
+        </md-list>
+      </md-sidenav>
+      <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+          <md-button ng-click="openLeftMenu()">
+            <i class='fa fa-bars'></i>
+          </md-button>
+          <a href='#/'><img class='crest' src='favicon.ico'></img></a>&nbsp;The Tim Blog
+        </div>
+      </md-toolbar>
+    </div>
 
     <div ui-view></div>
 
