@@ -5,15 +5,9 @@
     <p ng-if='body' layout-padding ng-bind-html='body' >
     </p>
     <p layout-padding ng-if='md' >
-      <md ng-include="'/md/' + id + '.md'"></md>
+      <marked src="'/md/' + id + '.md'"></marked>
     </p>
-    <md-content class='tags'>
-      <md-chips ng-model="tags" readonly="true">
-        <md-chip-template>
-          <a class='chip-link' ng-href='#/tag/{{$chip}}'>{{$chip}}</a>
-        </md-chip-template>
-      </md-chips>
-    </md-content>
+    <tags></tags>
   </md-whiteframe>
 </div>
 </section>

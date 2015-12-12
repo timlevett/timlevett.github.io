@@ -2,6 +2,10 @@ img.crest {
     width: 2em;
 }
 
+.title {
+  font-size : large;
+}
+
 .center {
   text-align: center;
 }
@@ -38,7 +42,7 @@ img.crest {
   text-decoration: none;
 }
 
-md img {
+marked .middle img {
     width: 50%;
     border-radius: 20px;
     margin-left: 20%;
@@ -51,12 +55,11 @@ md img {
 }
 
 @media (min-width: 600px) {
-  md-whiteframe.md-whiteframe-1dp { 
-    margin: 0 40px 0px; 
+  md-whiteframe.md-whiteframe-1dp {
+    margin: 0 40px 0px;
   }
   .md-subheader-inner {
     font-size: large;
   }
 
 }
-

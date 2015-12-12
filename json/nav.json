@@ -12,5 +12,10 @@
     "url" : "https://github.com/timlevett",
     "target" : "_blank",
     "faIcon" : "fa-github"
+  },
+  { "name" : "Feedback Form",
+    "url" : "http://goo.gl/forms/RzKOcVq2YN",
+    "target" : "_blank",
+    "faIcon" : "fa-comment"
   }
 ]
