@@ -6,7 +6,7 @@
                                            'ui.gravatar',
                                            'angulartics',
                                            'angulartics.google.analytics',
-                                           'yaru22.md']);
+                                           'hc.marked']);
 
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
@@ -38,11 +38,11 @@
     }
   ]
 );
-  
+
 //services -------------------------------------------------------------------------
 
 timHome.factory('PostService', ['$http', function($http){
-    
+
     var getPosts = function() {
       return $http.get('/json/posts.json', { cache : true})
       .then(function(result){
@@ -50,7 +50,7 @@ timHome.factory('PostService', ['$http', function($http){
         return posts;
       }, function(){console.warn('issue getting posts')});
     }
-    
+
     return {
       getPosts : getPosts
     };
@@ -80,11 +80,11 @@ timHome.factory('PostService', ['$http', function($http){
       .then(function(result){
         $scope.posts = result;
         if($scope.postid) {
-          $scope.post = filterFilter($scope.posts, {id : $scope.postid, title : $scope.postid})[0];
+          $scope.post = filterFilter($scope.posts, {title : $scope.postid})[0];
         }
       });
   });
-  
+
   timHome.controller('TagController',function ($sce, $scope, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 80;
@@ -96,7 +96,7 @@ timHome.factory('PostService', ['$http', function($http){
         }
       });
   });
-  
+
 //directives -----------------------------------------------------------------------
 
   timHome.directive('blogPostBeta', function(){
@@ -114,6 +114,13 @@ timHome.factory('PostService', ['$http', function($http){
     }
   });
 
+  timHome.directive('tags', function(){
+    return {
+      restrict : 'E',
+      templateUrl : 'partials/tags.html'
+    };
+  });
+
   timHome.directive('blogPost', function(){
     return {
       restrict : 'E',
@@ -122,7 +129,8 @@ timHome.factory('PostService', ['$http', function($http){
         body : '@',
         date : '@',
         md : '@',
-        id : '@'
+        id : '@',
+        tags : '='
       },
       templateUrl : 'partials/blogpost.html'
     }

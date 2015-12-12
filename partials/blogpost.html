@@ -5,7 +5,8 @@
     <p ng-if='body' style='padding: 15px;' ng-bind-html='body'>
     </p>
     <p layout-padding ng-if='md' >
-      <md ng-include="'/md/' + id + '.md'"></md>
+      <marked ng-include="'/md/' + id + '.md'"></marked>
     </p>
+    <tags></tags>
   </md-whiteframe>
 </div>
