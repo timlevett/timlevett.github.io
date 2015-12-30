@@ -2,7 +2,7 @@
   "id" : 3,
   "title" : "",
   "date" : "11-15-2015",
-  "body" : "",
+  "md" : true,
   "tags" : []
 }
 

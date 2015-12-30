@@ -4,6 +4,7 @@
     "title" : "Hello World",
     "date" : "01-13-1990",
     "body" : "Remember that one time I wrote in a blog? You may have remembered it, it was called <a href='https://nocableneeded.blogspot.com' target='_blank'>no cable needed</a>. It was great for a while, then I thought it would be wonderful if I wrote many blogs. I created: <a href='http://lifewithtimtim.blogspot.com/' target='_blank'>http://lifewithtimtim.blogspot.com/</a> which was just my life events, <a href='http://codemonkeydba.blogspot.com/' target='_blank'>http://codemonkeydba.blogspot.com/</a> which was work stuff that I found amusing, and <a href='http://thiscityhasbigbuildingsilikefoodbye.blogspot.com/' target='_blank'>I love food</a> which I have written in a totally of 3 times. Wowza, that was crazy. Well, as of today, those are now depricated. I'll be putting posts on all of those soon. Welcome to the new Tim blog. I thought it would be fun to write an open source blogger using github's super neat public hosting site. So, here goes nothing...",
+    "draft" : false,
     "tags" : ["first", "blogs"]
   },
   {
@@ -11,6 +12,7 @@
     "title" : "Java Needs an Encapsulation Easy Button",
     "date" : "11-15-2015",
     "body" : "We have all done it, some might not even remember why.  You wrote a private variable with public/protected getters and setters.  We do this for encapsulation, so if by some chance you wanted to change what happens when you set or get that value, you can change it with no effect to the code that utilizes your super fancy class.  However, 99.9% of the time, we are just returning or setting the value.  In a dream the other night I had [what I hope to be] a premonition that Java 9 had added @getter and @Setter annotations.  The next day I did a Google search for said software, curious how they dealt with the whole \"the function exists, but it doesn't exist in a file\" thing.  I found Project Lombok.  Neat project, full of useful annotations.  The trick they do is changing your IDE to be okay with no real getter/setter. Neat! I think Java needs to take this project in house and have it be part of the compiler (just like Java is doing with Joda Time, yay!).  In the end it is just space saver for your .java file as the .class would presumably have these methods. However, think of the countless dev hours that you will save with not having to read/write/generate your getters/setters. I mean, look how much cleaner this code is <a href='http://projectlombok.org/features/GetterSetter.html'>here</a>.",
+    "draft" : false,
     "tags" : ["work", "java", "repost"]
   },
   {
@@ -18,6 +20,7 @@
     "title" : "2015 Chicago Marathon Race Recap",
     "date" : "11-15-2015",
     "md" : true,
+    "draft" : false,
     "tags" : ["running", "race recap", "chicago"]
   },
   {
@@ -25,6 +28,7 @@
     "title" : "Things Real Blogs Have",
     "date" : "11-19-2015",
     "md" : true,
+    "draft" : false,
     "tags" : ["blogs", "winter"]
   },
   {
@@ -32,6 +36,7 @@
     "title" : "2015 First Snow",
     "date" : "11-21-2015",
     "md"   : true,
+    "draft" : false,
     "tags" : ["snow", "fat biking","workout"]
   },
   {
@@ -39,6 +44,7 @@
   "title" : "Happy Thanksgiving!",
   "date"  : "11-26-2015",
   "md"    : true,
+  "draft" : false,
   "tags"  : ["thanks","traveling"]
 },
 {
@@ -46,6 +52,7 @@
   "title" : "Lazy Sundays",
   "date"  : "11-29-2015",
   "md"    : true,
+  "draft" : false,
   "tags"  : ["Sunday","f1","relaxing","football"]
 },
 {
@@ -53,6 +60,23 @@
   "title" : "2015 is Wrapping Up!",
   "date" : "12-12-2015",
   "md" : true,
+  "draft" : false,
   "tags" : ["relaxing","changes","google fi"]
+},
+{
+  "id" : 9,
+  "title" : "2016 New Years Goals",
+  "date" : "12-30-2015",
+  "md" : true,
+  "draft" : true,
+  "tags" : ["2016","goals"]
+},
+{
+  "id" : 10,
+  "title" : "Redesigning MyUW Datastore",
+  "date" : "1-1-2016",
+  "md" : true,
+  "draft" : true,
+  "tags" : ["work","refactor","microservice"]
 }
 ]

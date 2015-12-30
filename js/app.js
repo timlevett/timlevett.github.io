@@ -41,12 +41,13 @@
 
 //services -------------------------------------------------------------------------
 
-timHome.factory('PostService', ['$http', function($http){
+timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterFilter){
 
     var getPosts = function() {
       return $http.get('/json/posts.json', { cache : true})
       .then(function(result){
         var posts = result.data;
+        var posts = filterFilter(posts, {draft : false});
         return posts;
       }, function(){console.warn('issue getting posts')});
     }
