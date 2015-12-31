@@ -66,9 +66,9 @@
 {
   "id" : 9,
   "title" : "2016 New Years Goals",
-  "date" : "12-30-2015",
+  "date" : "12-31-2015",
   "md" : true,
-  "draft" : true,
+  "draft" : false,
   "tags" : ["2016","goals"]
 },
 {
