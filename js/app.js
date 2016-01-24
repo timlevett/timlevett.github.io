@@ -52,25 +52,44 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       }, function(){console.warn('issue getting posts')});
     }
 
+    var getNav = function() {
+      return $http.get('/json/nav.json', { cache : true})
+        .then(function(result){
+          return result.data;
+        }, function(){console.warn('issue getting nav')});
+    }
+
     return {
-      getPosts : getPosts
+      getPosts : getPosts,
+      getNav : getNav
     };
   }]);
 
 
 //controllers -----------------------------------------------------------------------
 
-    timHome.controller('NavController',function ($scope, $http, $rootScope) {
+    timHome.controller('SidebarController', function($mdSidenav, $scope, $http, PostService){
+      $scope.toggleSidebar = function() {
+        $mdSidenav('left').toggle();
+      };
+
+      $scope.nav = [];
+
+      var init = function(){
+        PostService.getNav().then(function(result){$scope.nav = result;});
+      };
+
+      init();
+    });
+
+    timHome.controller('NavController',function ($scope, $http, $rootScope, PostService) {
     $scope.nav = [];
 
     $scope.switchTheme = function() {
       $rootScope.theme = $rootScope.theme === 'default' ? 'altTheme' : 'default';
     };
 
-    $http.get('/json/nav.json', { cache : true})
-      .then(function(result){
-        $scope.nav = result.data;
-      }, function(){console.warn('issue getting nav')});
+    PostService.getNav().then(function(result){$scope.nav = result;});
   });
 
   timHome.controller('HomeController',function ($sce, $scope, PostService, filterFilter) {
@@ -135,6 +154,14 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       },
       templateUrl : 'partials/blogpost.html'
     }
+  });
+
+  timHome.directive('sidebar', function(){
+    return {
+      restrict : 'E',
+      templateUrl : 'partials/sidebar.html',
+      controller : 'SidebarController'
+    };
   });
 
   timHome.directive('nav', function(){
