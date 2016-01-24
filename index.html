@@ -9,42 +9,11 @@
     <link rel="stylesheet" href="/css/app.css" type="text/css" />
   </head>
   <body ng-app='timHome' md-theme="{{ theme }}">
-    
-    <div ng-controller="SidebarController">
-      <md-sidenav md-component-id="left" class="md-sidenav-left">
-        <md-toolbar class='md-accent'>
-          <h3 class='header-sidebar'>The Tim Blog</h3>
-          <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="50" class='gravatar-sidebar'>
-        </md-toolbar>
-        <md-list>
-          <md-list-item  class='full-width' ng-repeat="item in nav">
-           <a class='full-width' ng-href='{{item.url}}' target='{{item.target}}'>
-             <md-button class='md-accent md-raised item-sidebar'>
-               <h3><i class='fa {{item.faIcon}} fa-fw'></i>{{item.name}}</h3>
-             </md-button>
-           </a>
-          </md-list-item>
-          <md-list-item class='bottom-left-abs'>
-            <md-button ng-click="openLeftMenu()" class='md-raised md-accent'>
-              Close Sidebar
-            </md-button>
-          </md-list-item>
-        </md-list>
-      </md-sidenav>
-      <md-toolbar md-scroll-shrink>
-        <div class="md-toolbar-tools">
-          <md-button ng-click="openLeftMenu()">
-            <i class='fa fa-bars'></i>
-          </md-button>
-          <a href='#/'><img class='crest' src='favicon.ico'></img></a>&nbsp;The Tim Blog
-        </div>
-      </md-toolbar>
-    </div>
+
+    <sidebar></sidebar>
 
     <div ui-view></div>
 
-    <!--navigation-->
-    <nav></nav>
     <script type="text/javascript" src="/node_modules/angular-marked/node_modules/marked/lib/marked.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>

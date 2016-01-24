@@ -51,14 +51,14 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         return posts;
       }, function(){console.warn('issue getting posts')});
     }
-    
+
     var getNav = function() {
       return $http.get('/json/nav.json', { cache : true})
         .then(function(result){
           return result.data;
         }, function(){console.warn('issue getting nav')});
     }
-    
+
     return {
       getPosts : getPosts,
       getNav : getNav
@@ -69,19 +69,19 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
 //controllers -----------------------------------------------------------------------
 
     timHome.controller('SidebarController', function($mdSidenav, $scope, $http, PostService){
-      $scope.openLeftMenu = function() {
+      $scope.toggleSidebar = function() {
         $mdSidenav('left').toggle();
       };
-      
+
       $scope.nav = [];
-      
+
       var init = function(){
         PostService.getNav().then(function(result){$scope.nav = result;});
       };
-      
+
       init();
     });
-    
+
     timHome.controller('NavController',function ($scope, $http, $rootScope, PostService) {
     $scope.nav = [];
 
@@ -154,6 +154,14 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       },
       templateUrl : 'partials/blogpost.html'
     }
+  });
+
+  timHome.directive('sidebar', function(){
+    return {
+      restrict : 'E',
+      templateUrl : 'partials/sidebar.html',
+      controller : 'SidebarController'
+    };
   });
 
   timHome.directive('nav', function(){
