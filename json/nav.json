@@ -3,6 +3,10 @@
     "url" : "#/",
     "faIcon" : "fa-home"
   },
+  { "name" : "Tags",
+    "url" : "#/tag",
+    "faIcon" : "fa-hashtag"
+  },
   { "name" : "About Me",
     "url" : "https://plus.google.com/+TimLevett",
     "target" : "_blank",

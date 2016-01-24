@@ -11,6 +11,28 @@
 
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
+
+    Array.prototype.getUnique = function(){
+       var u = {}, a = [];
+       for(var i = 0, l = this.length; i < l; ++i){
+          if(u.hasOwnProperty(this[i])) {
+             u[this[i]] += 1;
+             continue;
+          }
+          a.push(this[i]);
+          u[this[i]] = 1;
+       }
+       var ret = [];
+       for(var j = 0; j < a.length; j++) {
+         var obj = {};
+         obj.text = a[j];
+         obj.link = '#/tag/' + obj.text;
+         obj.weight = u[obj.text];
+         ret.push(obj);
+       }
+       return ret;
+    }
+
     $analyticsProvider.firstPageview(true);
 
     $mdThemingProvider.theme('default')
@@ -28,6 +50,7 @@
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home2.html", controller : "HomeController"})
       .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html"})
+      .state('tag-home', { url: '/tag', templateUrl : "partials/tag-home.html", controller : "TagHomeController"})
       .state('tags', { url : '/tag/:tag', templateUrl : "partials/home2.html", controller : "TagController"})
   });
 
@@ -103,6 +126,18 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         if($scope.postid) {
           $scope.post = filterFilter($scope.posts, {title : $scope.postid})[0];
         }
+      });
+  });
+
+  timHome.controller('TagHomeController', function(PostService, $scope){
+    $scope.wordz = [];
+    PostService.getPosts()
+      .then(function(result){
+        angular.forEach(result, function(value, key){
+          $scope.wordz = $scope.wordz.concat(value.tags);
+        });
+        $scope.words = $scope.wordz.getUnique();
+        var what = 'yep';
       });
   });
 
