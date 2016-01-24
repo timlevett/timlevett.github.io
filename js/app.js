@@ -6,7 +6,8 @@
                                            'ui.gravatar',
                                            'angulartics',
                                            'angulartics.google.analytics',
-                                           'hc.marked']);
+                                           'hc.marked',
+                                           'angular-jqcloud']);
 
 //configuration -----------------------------------------------------------------------
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
