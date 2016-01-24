@@ -79,6 +79,9 @@ marked .middle img {
     color: black;
     text-decoration: none;
 }
+.chip-link:hover {
+  cursor: pointer;
+}
 
 @media (min-width: 600px) {
   md-whiteframe.md-whiteframe-1dp {
@@ -89,4 +92,3 @@ marked .middle img {
   }
 
 }
-
