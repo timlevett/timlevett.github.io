@@ -1,0 +1,25 @@
+{
+  "name": "Tim-Blog",
+  "description": "Blog of Tim things",
+  "main": "index.html",
+  "authors": [
+    "Tim Levett <tim.levett@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "blog"
+  ],
+  "homepage": "https://github.com/timlevett/timlevett.github.io",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-jqcloud": "~1.0.2"
+  }
+}
