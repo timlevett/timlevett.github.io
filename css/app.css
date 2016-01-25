@@ -80,6 +80,10 @@ marked .middle img {
     text-decoration: none;
 }
 
+.lr-padding {
+    padding : 0 8px 0;
+}
+
 @media (min-width: 600px) {
   md-whiteframe.md-whiteframe-1dp {
     margin: 0 40px 0px;
@@ -89,4 +93,3 @@ marked .middle img {
   }
 
 }
-
