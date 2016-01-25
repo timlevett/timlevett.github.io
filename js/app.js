@@ -41,7 +41,7 @@
 
     $mdThemingProvider.theme('altTheme')
       .primaryPalette('orange')
-      .accentPalette('red');
+      .accentPalette('amber');
 
     $mdThemingProvider.alwaysWatchTheme(true);
 
@@ -92,9 +92,13 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
 
 //controllers -----------------------------------------------------------------------
 
-    timHome.controller('SidebarController', function($mdSidenav, $scope, $http, PostService){
+    timHome.controller('SidebarController', function($mdSidenav, $rootScope, $scope, $http, PostService){
       $scope.toggleSidebar = function() {
         $mdSidenav('left').toggle();
+      };
+
+      $scope.switchTheme = function() {
+        $rootScope.theme = $rootScope.theme === 'default' ? 'altTheme' : 'default';
       };
 
       $scope.nav = [];
