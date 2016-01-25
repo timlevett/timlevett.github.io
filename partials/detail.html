@@ -1,4 +1,6 @@
 <div class='detail' ng-controller="HomeController">
-  <a href='#/'><md-button><md-tooltip md-direction="top">Home</md-tooltip><i class='fa fa-arrow-left'></i></md-button></a>
+  <md-content style='background: #eee; padding: .5em;'>
+    <a href='#/'>Home</a> / Post / {{post.date | date}}
+  </md-content>
   <blog-post title='{{post.title}}' body='{{post.body}}' date='{{post.date}}' md='{{post.md}}' id='{{post.id}}' tags='post.tags'></blog-post>
 </div>
