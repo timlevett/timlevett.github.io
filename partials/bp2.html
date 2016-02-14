@@ -1,7 +1,8 @@
 <section>
-  <md-subheader class="md-primary"><a href='#/post/{{title}}' class='title'>{{title}}</a> <div class='date'>{{date | date}}</div></md-subheader>
-  <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
-  <md-whiteframe class="md-whiteframe-1dp" flex="96" flex-offset='2'>
+  <!-- <md-subheader></md-subheader> -->
+  <div class='light-grey' layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+  <md-whiteframe class="md-whiteframe-1dp white" flex="96" flex-offset='2'>
+    <h1 class="lr-padding"><a href='#/post/{{title}}' class='title'>{{title}}</a> <div class='title-date'>{{date | date}}</div></h1>
     <p ng-if='body' ng-bind-html='body' class='lr-padding'>
     </p>
     <p class='lr-padding' ng-if='md' >

@@ -1,9 +1,13 @@
-img.crest {
-    width: 2em;
+.white {
+  background-color: #FFF;
 }
 
-.title {
-  font-size : large;
+.light-grey {
+  background-color: #EEE;
+}
+
+img.crest {
+    width: 2em;
 }
 
 .bottom-left-abs {
@@ -29,14 +33,6 @@ img.crest {
 
 .nav-icons {
   padding-top : 5px;
-}
-
-.date {
-      float: right;
-      padding-right: 5px;
-      padding-top: 5px;
-      color: gray;
-      font-size: .8em;
 }
 
 .gravatar {
@@ -66,6 +62,14 @@ img.crest {
 .title {
   color: black;
   text-decoration: none;
+}
+
+.title-date {
+      float: right;
+      padding-right: 5px;
+      padding-top: 5px;
+      color: gray;
+      font-size: small;
 }
 
 marked .middle img {
