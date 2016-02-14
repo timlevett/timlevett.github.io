@@ -33,6 +33,12 @@
        return ret;
     }
 
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.split(search).join(replacement);
+    };
+
+
     $analyticsProvider.firstPageview(true);
 
     $mdThemingProvider.theme('default')
@@ -112,7 +118,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       init();
     });
 
-  timHome.controller('HomeController',function ($sce, $scope, PostService, filterFilter) {
+  timHome.controller('HomeController',function ($sce, $scope, $filter, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 90;
     $scope.postid = $scope.$stateParams.postid;
@@ -120,7 +126,24 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       .then(function(result){
         $scope.posts = result;
         if($scope.postid) {
-          $scope.post = filterFilter($scope.posts, {title : $scope.postid})[0];
+          for(var index in $scope.posts) {
+            var value = $scope.posts[index];
+            if(value) {
+              if(value.title === $scope.postid) {//exact match (legacy)
+                $scope.post = value;
+                break;
+              } else if(value.id == $scope.postid) { //based on id
+                $scope.post = value;
+                break;
+              } else if(value.title && value.title.replaceAll(" ","_").toLowerCase() === $scope.postid.toLowerCase()) { //perdy url
+                $scope.post = value;
+                break;
+              }
+            }
+          }
+          if(!$scope.post) {
+            $scope.post = {title : '404 : not found', body: 'The page you are looking for does not exist, please try <a href="#/">going home</a>.'};
+          }
           $scope.tags = $scope.post.tags;
         }
       });
@@ -163,7 +186,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         id : '@',
         tags : '='
       },
-      templateUrl : 'partials/bp2.html'
+      templateUrl : 'partials/bp.html'
     }
   });
 
