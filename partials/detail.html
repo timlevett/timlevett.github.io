@@ -2,8 +2,8 @@
   <md-content style='background: #eee; padding: .5em;'>
     <a href='#/'>Home</a> / Post / {{post.date | date}}
   </md-content>
-  <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
-    <md-whiteframe class="md-whiteframe-2dp" flex="90" flex-offset='5'>
+  <div class="light-grey" layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+    <md-whiteframe class="md-whiteframe-2dp white" flex="90" flex-offset='5'>
       <div class='date'>{{post.date | date}}</div>
       <h1 class="md-secondary" style='text-align: center;' ><a href='#/post/{{post.title}}' class='title'>{{post.title}}</a></h1>
       <p ng-if='post.body' ng-bind-html='post.body' class='lr-padding'>
