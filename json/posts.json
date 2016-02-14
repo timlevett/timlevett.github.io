@@ -90,7 +90,7 @@
 {
   "id" : 12,
   "title" : "What happened to January",
-  "date" : "1-24-2015",
+  "date" : "1-24-2016",
   "md" : true,
   "draft" : false,
   "tags" : ["blog update", "refactor", "Sunday", "gaming","running"]
@@ -98,10 +98,10 @@
 {
   "id" : 13,
   "title" : "Cats, Cats, Cats",
-  "date" : "1-31-2015",
+  "date" : "2-14-2016",
   "md" : true,
-  "draft" : true,
-  "tags" : ["cats"]
+  "draft" : false,
+  "tags" : ["cats","blog update","Sunday"]
 }
 
 
