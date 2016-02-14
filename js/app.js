@@ -49,10 +49,11 @@
 
     $urlRouterProvider.otherwise("/");
     $stateProvider
-      .state('home', { url: '/', templateUrl : "partials/home2.html", controller : "HomeController"})
-      .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html"})
+      .state('home', { url: '/', templateUrl : "partials/home.html", controller : "HomeController"})
+      .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html", controller : "HomeController"})
       .state('tag-home', { url: '/tag', templateUrl : "partials/tag-home.html", controller : "TagHomeController"})
-      .state('tags', { url : '/tag/:tag', templateUrl : "partials/home2.html", controller : "TagController"})
+      .state('tags', { url : '/tag/:tag', templateUrl : "partials/home.html", controller : "TagController"})
+      .state('cards', {url : '/cards', templateUrl : "partials/cards.html", controller : "HomeController"});
   });
 
   timHome.run(['$rootScope', '$state', '$stateParams',
@@ -111,16 +112,6 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       init();
     });
 
-    timHome.controller('NavController',function ($scope, $http, $rootScope, PostService) {
-    $scope.nav = [];
-
-    $scope.switchTheme = function() {
-      $rootScope.theme = $rootScope.theme === 'default' ? 'altTheme' : 'default';
-    };
-
-    PostService.getNav().then(function(result){$scope.nav = result;});
-  });
-
   timHome.controller('HomeController',function ($sce, $scope, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 90;
@@ -130,6 +121,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         $scope.posts = result;
         if($scope.postid) {
           $scope.post = filterFilter($scope.posts, {title : $scope.postid})[0];
+          $scope.tags = $scope.post.tags;
         }
       });
   });
@@ -160,7 +152,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
 
 //directives -----------------------------------------------------------------------
 
-  timHome.directive('blogPostBeta', function(){
+  timHome.directive('blogPost', function(){
     return {
       restrict : 'E',
       scope : {
@@ -182,21 +174,6 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
     };
   });
 
-  timHome.directive('blogPost', function(){
-    return {
-      restrict : 'E',
-      scope : {
-        title : '@',
-        body : '@',
-        date : '@',
-        md : '@',
-        id : '@',
-        tags : '='
-      },
-      templateUrl : 'partials/blogpost.html'
-    }
-  });
-
   timHome.directive('sidebar', function(){
     return {
       restrict : 'E',
@@ -204,12 +181,4 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       controller : 'SidebarController'
     };
   });
-
-  timHome.directive('nav', function(){
-    return {
-      restrict : 'E',
-      templateUrl : 'partials/nav.html'
-    };
-  });
-
 })();

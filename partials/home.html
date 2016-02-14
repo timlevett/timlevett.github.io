@@ -1,5 +1,18 @@
-<div class='home' ng-controller="HomeController">
-  <div ng-repeat="post in posts | orderBy:'-id'">
-    <blog-post title='{{post.title}}' body='{{post.body}}' date='{{post.date}}'></blog-post>
-  </div>
+<div class='home'>
+  <md-content ng-if='tag' style='background: #eee; padding: .5em;'>
+  	<a href='#/'>Home</a> / <a href='#/tag'>tags</a> / {{tag}}
+  </md-content>
+  <md-content ng-style="{'height': height + 'vh'}">
+    <div ng-repeat="post in posts | orderBy:'-id'">
+      <blog-post title='{{post.title}}'
+                 body='{{post.body}}'
+                 date='{{post.date}}'
+                 md='{{post.md}}'
+                 id='{{post.id}}'
+                 tags='post.tags'></blog-post>
+    </div>
+    <div>
+      <blog-post body="End of line."></blog-post>
+    </div>
+  </md-content>
 </div>

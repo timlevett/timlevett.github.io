@@ -1,6 +1,17 @@
-<div class='detail' ng-controller="HomeController">
+<div class='detail'>
   <md-content style='background: #eee; padding: .5em;'>
     <a href='#/'>Home</a> / Post / {{post.date | date}}
   </md-content>
-  <blog-post title='{{post.title}}' body='{{post.body}}' date='{{post.date}}' md='{{post.md}}' id='{{post.id}}' tags='post.tags'></blog-post>
+  <div layout="row" layout-padding layout-wrap layout-fill ng-cloak>
+    <md-whiteframe class="md-whiteframe-2dp" flex="90" flex-offset='5'>
+      <div class='date'>{{post.date | date}}</div>
+      <h1 class="md-secondary" style='text-align: center;' ><a href='#/post/{{post.title}}' class='title'>{{post.title}}</a></h1>
+      <p ng-if='post.body' ng-bind-html='post.body' class='lr-padding'>
+      </p>
+      <p ng-if='post.md' class='lr-padding'>
+        <marked src="'/md/' + post.id + '.md'"></marked>
+      </p>
+      <tags></tags>
+    </md-whiteframe>
+  </div>
 </div>
