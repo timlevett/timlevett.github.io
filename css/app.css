@@ -100,3 +100,9 @@ marked .middle img {
   }
 
 }
+
+.breadcrumbs {
+  background-color: #eee !important;
+  padding: 10px 20px 10px;
+  border-bottom: lightgray 1px solid;
+}

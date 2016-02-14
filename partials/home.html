@@ -1,7 +1,5 @@
 <div class='home'>
-  <md-content ng-if='tag' style='background: #eee; padding: .5em;'>
-  	<a href='#/'>Home</a> / <a href='#/tag'>tags</a> / {{tag}}
-  </md-content>
+  <breadcrumbs crumbs='crumbs'></breadcrumbs>
   <md-content>
     <div ng-repeat="post in posts | orderBy:'-id'">
       <blog-post title='{{post.title}}'

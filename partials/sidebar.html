@@ -1,6 +1,6 @@
 <div>
   <md-sidenav md-component-id="left" class="md-sidenav-left">
-    <md-toolbar class='md-accent'>
+    <md-toolbar class='md-accent' ng-click="toggleSidebar()" style='cursor: pointer;' title='hide sidebar'>
       <h3 class='header-sidebar'>The Tim Blog</h3>
       <img gravatar-src="'tim.levett@gmail.com'" gravatar-size="50" class='gravatar-sidebar'>
     </md-toolbar>
@@ -24,7 +24,7 @@
   </md-sidenav>
   <md-toolbar md-scroll-shrink>
     <div class="md-toolbar-tools">
-      <md-button ng-click="toggleSidebar()" aria-label="open menu">
+      <md-button class="md-icon-button" ng-click="toggleSidebar()" aria-label="open menu">
         <i class='fa fa-bars'></i>
       </md-button>
       <a href='#/'><img class='crest' src='favicon.ico'></img></a>&nbsp;The Tim Blog

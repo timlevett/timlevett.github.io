@@ -1,0 +1,3 @@
+<md-content class="breadcrumbs" ng-if='crumbs && crumbs.length > 0'>
+  <a href='#/'>Home</a><span ng-repeat="depth in crumbs"> / <a ng-href="{{depth.url}}">{{depth.title}}</a></span
+</md-content>

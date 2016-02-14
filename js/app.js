@@ -142,15 +142,17 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
             }
           }
           if(!$scope.post) {
-            $scope.post = {title : '404 : not found', body: 'The page you are looking for does not exist, please try <a href="#/">going home</a>.'};
+            $scope.post = {title : '404 : not found', body: 'The page you are looking for does not exist, please try <a href="#/">going home</a>.', date: '01-01-1970'};
           }
           $scope.tags = $scope.post.tags;
+          $scope.crumbs = [{title: 'Post'}, {title: $scope.post.date}];
         }
       });
   });
 
   timHome.controller('TagHomeController', function(PostService, $scope){
     $scope.wordz = [];
+    $scope.crumbs = [{title: 'tag'}];
     PostService.getPosts()
       .then(function(result){
         angular.forEach(result, function(value, key){
@@ -165,10 +167,12 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
     $scope.posts = [];
     $scope.height = 80;
     $scope.tag = $scope.$stateParams.tag;
+    $scope.crumbs = [{title: 'tag', url: '#/tag'}];
     PostService.getPosts()
       .then(function(result){
         if($scope.tag) {
           $scope.posts = filterFilter(result, {tags : $scope.tag});
+          $scope.crumbs.push({title: $scope.tag});
         }
       });
   });
@@ -196,6 +200,16 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       templateUrl : 'partials/tags.html'
     };
   });
+
+  timHome.directive('breadcrumbs', function(){
+    return {
+      restrict : 'E',
+      templateUrl : 'partials/breadcrumbs.html',
+      scope : {
+        crumbs : '='
+      }
+    }
+  })
 
   timHome.directive('sidebar', function(){
     return {
