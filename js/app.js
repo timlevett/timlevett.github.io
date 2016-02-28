@@ -75,7 +75,7 @@
 
 //services -------------------------------------------------------------------------
 
-timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', '$analytics', function(GIST_URL, $http, filterFilter, $analytics){
+timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$analytics', function(GIST_URL, $http, $q, filterFilter, $analytics){
 
     var getPosts = function() {
       return $http.get('/json/posts.json', { cache : true})
@@ -84,14 +84,23 @@ timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', '$analytics
         var posts = filterFilter(posts, {draft : false});
         return posts;
       }, function(){console.warn('issue getting posts')});
-    }
+    };
+
+    var getAllPosts = function(){
+      return $q.all([getPosts(), getGists()]).then(function(results){
+        var oldPosts = results[0];
+        var newPosts = results[1];
+        var allPosts = oldPosts.concat(newPosts);
+        return allPosts;
+      });
+    };
 
     var getNav = function() {
       return $http.get('/json/nav.json', { cache : true})
         .then(function(result){
           return result.data;
         }, function(){console.warn('issue getting nav')});
-    }
+    };
 
     var getGists = function (){
       var foo;
@@ -109,16 +118,18 @@ timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', '$analytics
                         $analytics.eventTrack('misconfigured-file', {  category: 'configuration', label:  value.gistFileName, value: value.gistFileName });
                       }
                     });
+                    var _posts = filterFilter(_posts, {draft : false});
                     return _posts;
                   },function(){
                     console.error('issue getting gists');
                   });
-    }
+    };
 
     return {
       getPosts : getPosts,
       getNav : getNav,
-      getGists : getGists
+      getGists : getGists,
+      getAllPosts : getAllPosts
     };
   }]);
 
@@ -160,7 +171,7 @@ timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', '$analytics
     $scope.posts = [];
     $scope.height = 90;
     $scope.postid = $scope.$stateParams.postid;
-    PostService.getPosts()
+    PostService.getAllPosts()
       .then(function(result){
         $scope.posts = result;
         if($scope.postid) {
