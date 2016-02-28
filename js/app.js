@@ -57,7 +57,7 @@
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html", controller : "HomeController"})
-      .state('gist', { url: '/gists', templateUrl : "partials/home.html", controller : "GistController"})
+      .state('gist', { url: '/drafts', templateUrl : "partials/home.html", controller : "DraftController"})
       .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html", controller : "HomeController"})
       .state('tag-home', { url: '/tag', templateUrl : "partials/tag-home.html", controller : "TagHomeController"})
       .state('tags', { url : '/tag/:tag', templateUrl : "partials/home.html", controller : "TagController"})
@@ -77,17 +77,18 @@
 
 timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$analytics', function(GIST_URL, $http, $q, filterFilter, $analytics){
 
-    var getPosts = function() {
+    var getPosts = function(drafts) {
       return $http.get('/json/posts.json', { cache : true})
       .then(function(result){
-        var posts = result.data;
-        var posts = filterFilter(posts, {draft : false});
-        return posts;
+        var _posts = result.data;
+        var justDrafts = drafts ? true : false;
+        var _posts = filterFilter(_posts, {draft : justDrafts});
+        return _posts;
       }, function(){console.warn('issue getting posts')});
     };
 
-    var getAllPosts = function(){
-      return $q.all([getPosts(), getGists()]).then(function(results){
+    var getAllPosts = function(drafts){
+      return $q.all([getPosts(drafts), getGists(drafts)]).then(function(results){
         var oldPosts = results[0];
         var newPosts = results[1];
         var allPosts = oldPosts.concat(newPosts);
@@ -95,14 +96,7 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
       });
     };
 
-    var getNav = function() {
-      return $http.get('/json/nav.json', { cache : true})
-        .then(function(result){
-          return result.data;
-        }, function(){console.warn('issue getting nav')});
-    };
-
-    var getGists = function (){
+    var getGists = function (drafts){
       var foo;
       return $http.jsonp(GIST_URL+'?callback=JSON_CALLBACK', { cache : true})
                   .then(function(result){
@@ -118,11 +112,18 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
                         $analytics.eventTrack('misconfigured-file', {  category: 'configuration', label:  value.gistFileName, value: value.gistFileName });
                       }
                     });
-                    var _posts = filterFilter(_posts, {draft : false});
+                    var justDrafts = drafts ? true : false;
+                    var _posts = filterFilter(_posts, {draft : justDrafts});
                     return _posts;
                   },function(){
                     console.error('issue getting gists');
                   });
+    };
+    var getNav = function() {
+      return $http.get('/json/nav.json', { cache : true})
+        .then(function(result){
+          return result.data;
+        }, function(){console.warn('issue getting nav')});
     };
 
     return {
@@ -154,9 +155,9 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
       init();
     });
 
-  timHome.controller('GistController', function($scope, PostService){
+  timHome.controller('DraftController', function($scope, PostService){
     $scope.posts = [];
-    PostService.getGists().then(function(results){
+    PostService.getAllPosts(true).then(function(results){
       if(results) {
       $scope.posts = results;
 
