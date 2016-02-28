@@ -160,7 +160,7 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
     PostService.getAllPosts(true).then(function(results){
       if(results) {
       $scope.posts = results;
-
+      $scope.crumbs = [{title: 'Drafts'}];
       console.log($scope.posts);
       } else {
         console.error('issue loading posts');
