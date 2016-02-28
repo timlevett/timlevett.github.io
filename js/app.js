@@ -56,6 +56,7 @@
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html", controller : "HomeController"})
+      .state('gist', { url: '/gists', templateUrl : "partials/home.html", controller : "GistController"})
       .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html", controller : "HomeController"})
       .state('tag-home', { url: '/tag', templateUrl : "partials/tag-home.html", controller : "TagHomeController"})
       .state('tags', { url : '/tag/:tag', templateUrl : "partials/home.html", controller : "TagController"})
@@ -91,9 +92,20 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         }, function(){console.warn('issue getting nav')});
     }
 
+    var getGists = function (){
+      var foo;
+      return $http.jsonp('https://api.github.com/gists/22dadc049152f2b1d4df?callback=JSON_CALLBACK', { cache : true})
+                  .then(function(result){
+                    return result.data
+                  },function(){
+                    console.error('issue getting gists');
+                  });
+    }
+
     return {
       getPosts : getPosts,
-      getNav : getNav
+      getNav : getNav,
+      getGists : getGists
     };
   }]);
 
@@ -118,7 +130,22 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       init();
     });
 
-  timHome.controller('HomeController',function ($sce, $scope, $filter, PostService, filterFilter) {
+  timHome.controller('GistController', function($scope, PostService){
+    $scope.posts = [];
+    PostService.getGists().then(function(gist){
+      $scope.posts = [{
+        "id" : 1,
+        "title" : "Test",
+        "date" : "01-13-1990",
+        "mdBody" : gist.data.files['doc.md'].content,
+        "draft" : false,
+        "tags" : ["first", "blog update"]
+      }];
+      console.log($scope.posts);
+    })
+  });
+
+  timHome.controller('HomeController',function ($scope, $filter, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 90;
     $scope.postid = $scope.$stateParams.postid;
@@ -163,7 +190,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       });
   });
 
-  timHome.controller('TagController',function ($sce, $scope, PostService, filterFilter) {
+  timHome.controller('TagController',function ($scope, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 80;
     $scope.tag = $scope.$stateParams.tag;
@@ -185,6 +212,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       scope : {
         title : '@',
         body : '@',
+        mdBody : '@',
         date : '@',
         md : '@',
         id : '@',
