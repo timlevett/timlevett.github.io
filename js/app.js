@@ -10,6 +10,7 @@
                                            'angular-jqcloud']);
 
 //configuration -----------------------------------------------------------------------
+  timHome.constant('GIST_URL','https://api.github.com/gists/3c23e561a785c1985cb0');
   timHome.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $analyticsProvider) {
 
     Array.prototype.getUnique = function(){
@@ -56,6 +57,7 @@
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('home', { url: '/', templateUrl : "partials/home.html", controller : "HomeController"})
+      .state('gist', { url: '/gists', templateUrl : "partials/home.html", controller : "GistController"})
       .state('home-detail', { url: '/post/:postid', templateUrl : "partials/detail.html", controller : "HomeController"})
       .state('tag-home', { url: '/tag', templateUrl : "partials/tag-home.html", controller : "TagHomeController"})
       .state('tags', { url : '/tag/:tag', templateUrl : "partials/home.html", controller : "TagController"})
@@ -73,7 +75,7 @@
 
 //services -------------------------------------------------------------------------
 
-timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterFilter){
+timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', function(GIST_URL, $http, filterFilter){
 
     var getPosts = function() {
       return $http.get('/json/posts.json', { cache : true})
@@ -91,9 +93,20 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
         }, function(){console.warn('issue getting nav')});
     }
 
+    var getGists = function (){
+      var foo;
+      return $http.jsonp(GIST_URL+'?callback=JSON_CALLBACK', { cache : true})
+                  .then(function(result){
+                    return result.data
+                  },function(){
+                    console.error('issue getting gists');
+                  });
+    }
+
     return {
       getPosts : getPosts,
-      getNav : getNav
+      getNav : getNav,
+      getGists : getGists
     };
   }]);
 
@@ -118,7 +131,35 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       init();
     });
 
-  timHome.controller('HomeController',function ($sce, $scope, $filter, PostService, filterFilter) {
+  timHome.controller('GistController', function($analytics, $scope, PostService){
+    $scope.posts = [];
+    PostService.getGists().then(function(results){
+      if(results) {
+      var gist = results.data;
+      var _posts;
+
+      _posts = angular.fromJson(gist.files['config.js'].content);
+      angular.forEach(_posts, function(value, key){
+        //populate the content from the gist object
+        var file = gist.files[value.gistFileName];
+        if(file) {
+          value.mdBody = file.content;
+        } else {
+          console.log(value.gistFileName + " doesn't exist in that gist.");
+          $analytics.eventTrack('misconfigured-file', {  category: 'configuration', label:  value.gistFileName, value: value.gistFileName });
+        }
+      });
+
+      $scope.posts = _posts;
+      
+      console.log($scope.posts);
+      } else {
+        console.error('issue loading posts');
+      }
+    })
+  });
+
+  timHome.controller('HomeController',function ($scope, $filter, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 90;
     $scope.postid = $scope.$stateParams.postid;
@@ -163,7 +204,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       });
   });
 
-  timHome.controller('TagController',function ($sce, $scope, PostService, filterFilter) {
+  timHome.controller('TagController',function ($scope, PostService, filterFilter) {
     $scope.posts = [];
     $scope.height = 80;
     $scope.tag = $scope.$stateParams.tag;
@@ -185,6 +226,7 @@ timHome.factory('PostService', ['$http', 'filterFilter', function($http, filterF
       scope : {
         title : '@',
         body : '@',
+        mdBody : '@',
         date : '@',
         md : '@',
         id : '@',

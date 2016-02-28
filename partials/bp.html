@@ -5,8 +5,12 @@
     <h1 class="lr-padding"><a href='#/post/{{title.replaceAll(" ","_").toLowerCase()}}' class='title'>{{title}}</a> <div class='title-date'>{{date | date}}</div></h1>
     <p ng-if='body' ng-bind-html='body' class='lr-padding'>
     </p>
-    <p class='lr-padding' ng-if='md' >
+    <p class='lr-padding' ng-if="md" >
       <marked src="'/md/' + id + '.md'"></marked>
+    </p>
+    <p class='lr-padding' ng-if="mdBody" >
+      <div marked='mdBody'>
+      </div>
     </p>
     <tags></tags>
   </md-whiteframe>
