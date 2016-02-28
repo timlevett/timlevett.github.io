@@ -75,7 +75,7 @@
 
 //services -------------------------------------------------------------------------
 
-timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', function(GIST_URL, $http, filterFilter){
+timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', '$analytics', function(GIST_URL, $http, filterFilter, $analytics){
 
     var getPosts = function() {
       return $http.get('/json/posts.json', { cache : true})
@@ -97,7 +97,19 @@ timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', function(GI
       var foo;
       return $http.jsonp(GIST_URL+'?callback=JSON_CALLBACK', { cache : true})
                   .then(function(result){
-                    return result.data
+                    var gist = result.data.data;
+                    var _posts = angular.fromJson(gist.files['config.js'].content);
+                    angular.forEach(_posts, function(value, key){
+                      //populate the content from the gist object
+                      var file = gist.files[value.gistFileName];
+                      if(file) {
+                        value.mdBody = file.content;
+                      } else {
+                        console.log(value.gistFileName + " doesn't exist in that gist.");
+                        $analytics.eventTrack('misconfigured-file', {  category: 'configuration', label:  value.gistFileName, value: value.gistFileName });
+                      }
+                    });
+                    return _posts;
                   },function(){
                     console.error('issue getting gists');
                   });
@@ -131,27 +143,12 @@ timHome.factory('PostService', ['GIST_URL', '$http', 'filterFilter', function(GI
       init();
     });
 
-  timHome.controller('GistController', function($analytics, $scope, PostService){
+  timHome.controller('GistController', function($scope, PostService){
     $scope.posts = [];
     PostService.getGists().then(function(results){
       if(results) {
-      var gist = results.data;
-      var _posts;
+      $scope.posts = results;
 
-      _posts = angular.fromJson(gist.files['config.js'].content);
-      angular.forEach(_posts, function(value, key){
-        //populate the content from the gist object
-        var file = gist.files[value.gistFileName];
-        if(file) {
-          value.mdBody = file.content;
-        } else {
-          console.log(value.gistFileName + " doesn't exist in that gist.");
-          $analytics.eventTrack('misconfigured-file', {  category: 'configuration', label:  value.gistFileName, value: value.gistFileName });
-        }
-      });
-
-      $scope.posts = _posts;
-      
       console.log($scope.posts);
       } else {
         console.error('issue loading posts');
