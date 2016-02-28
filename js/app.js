@@ -203,7 +203,7 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
   timHome.controller('TagHomeController', function(PostService, $scope){
     $scope.wordz = [];
     $scope.crumbs = [{title: 'tag'}];
-    PostService.getPosts()
+    PostService.getAllPosts()
       .then(function(result){
         angular.forEach(result, function(value, key){
           $scope.wordz = $scope.wordz.concat(value.tags);
@@ -218,7 +218,7 @@ timHome.factory('PostService', ['GIST_URL', '$http', '$q', 'filterFilter', '$ana
     $scope.height = 80;
     $scope.tag = $scope.$stateParams.tag;
     $scope.crumbs = [{title: 'tag', url: '#/tag'}];
-    PostService.getPosts()
+    PostService.getAllPosts()
       .then(function(result){
         if($scope.tag) {
           $scope.posts = filterFilter(result, {tags : $scope.tag});
