@@ -8,6 +8,10 @@
       <p ng-if='post.md' class='lr-padding'>
         <marked src="'/md/' + post.id + '.md'"></marked>
       </p>
+      <p class='lr-padding' ng-if="post.mdBody" >
+        <div marked='post.mdBody'>
+        </div>
+      </p>
       <tags></tags>
     </md-whiteframe>
   </div>
