@@ -33,8 +33,10 @@ angular.module('timHome.controllers',[])
   $scope.posts = [];
   $scope.height = 90;
   $scope.postid = $scope.$stateParams.postid;
+  $scope.loading=true;
   PostService.getAllPosts()
     .then(function(result){
+      $scope.loading = false;
       $scope.posts = result;
       if($scope.postid) {
         for(var index in $scope.posts) {
