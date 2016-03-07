@@ -1,7 +1,7 @@
 <div class='home'>
   <breadcrumbs crumbs='crumbs'></breadcrumbs>
   <md-content class='light-grey' layout="row" layout-wrap layout-fill ng-cloak>
-    <div ng-repeat="post in posts | orderBy:'-id'">
+    <div ng-repeat="post in posts | orderBy:'-id' | limitTo:lim">
       <blog-post title='{{post.title}}'
                  body='{{post.body}}'
                  date='{{post.date}}'
@@ -10,8 +10,11 @@
                  id='{{post.id}}'
                  tags='post.tags'></blog-post>
     </div>
-    <div>
+    <div ng-if='posts.length <= lim'>
       <blog-post body="End of line."></blog-post>
+    </div>
+    <div ng-if='posts.length > lim' class='center full-width'>
+      <md-button class='md-raised md-primary' ng-click="upLim()">Load More!</md-button>
     </div>
   </md-content>
 </div>
