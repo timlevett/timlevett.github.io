@@ -1,18 +1,12 @@
 <div class='detail'>
   <breadcrumbs crumbs='crumbs'></breadcrumbs>
   <div class="light-grey" layout="row" layout-padding layout-wrap layout-fill ng-cloak>
-    <md-whiteframe class="md-whiteframe-2dp white" flex="90" flex-offset='5'>
-      <h1 class="md-secondary" style='text-align: center;' ><a href='#/post/{{post.title}}' class='title'>{{post.title}}</a></h1>
-      <p ng-if='post.body' ng-bind-html='post.body' class='lr-padding'>
-      </p>
-      <p ng-if='post.md' class='lr-padding'>
-        <marked src="'/md/' + post.id + '.md'"></marked>
-      </p>
-      <p class='lr-padding' ng-if="post.mdBody" >
-        <div marked='post.mdBody'>
-        </div>
-      </p>
-      <tags></tags>
-    </md-whiteframe>
+    <blog-post title='{{post.title}}'
+               body='{{post.body}}'
+               date='{{post.date}}'
+               md-body='{{post.mdBody}}'
+               md='{{post.md}}'
+               id='{{post.id}}'
+               tags='post.tags'></blog-post>
   </div>
 </div>
