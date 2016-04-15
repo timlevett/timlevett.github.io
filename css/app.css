@@ -65,7 +65,7 @@ img.crest {
 }
 
 .middle img {
-    width: 50%;
+    max-width: 50%;
     border-radius: 20px;
     margin-left: 20%;
 }
