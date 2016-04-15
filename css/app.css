@@ -1,3 +1,15 @@
+.post {
+  width : 98%;
+  margin-left: 1%;
+}
+
+@media (min-width: 800px) {
+  .post {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
 .white {
   background-color: #FFF;
 }
